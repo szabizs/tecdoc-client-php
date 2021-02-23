@@ -12,10 +12,24 @@ use Baumeister\TecDocClient\Generated\GetArticleLinkedAllLinkingTargetsByIds3;
 use Baumeister\TecDocClient\Generated\GetArticleLinkedAllLinkingTargetsByIds3Response;
 use Baumeister\TecDocClient\Generated\GetArticles;
 use Baumeister\TecDocClient\Generated\GetArticlesResponse;
+use Baumeister\TecDocClient\Generated\GetChildNodesPattern2;
+use Baumeister\TecDocClient\Generated\GetChildNodesPattern2Response;
+use Baumeister\TecDocClient\Generated\GetDirectArticlesByIds7;
+use Baumeister\TecDocClient\Generated\GetDirectArticlesByIds7Response;
 use Baumeister\TecDocClient\Generated\GetLanguages;
 use Baumeister\TecDocClient\Generated\GetLanguagesResponse;
+use Baumeister\TecDocClient\Generated\GetModelSeries;
+use Baumeister\TecDocClient\Generated\GetModelSeriesResponse;
+use Baumeister\TecDocClient\Generated\GetMotorsByCarTypeManuIdTerm2;
+use Baumeister\TecDocClient\Generated\GetMotorsByCarTypeManuIdTerm2Response;
 use Baumeister\TecDocClient\Generated\GetVehicleByIds3;
 use Baumeister\TecDocClient\Generated\GetVehicleByIds3Response;
+use Baumeister\TecDocClient\Generated\GetManufacturers2;
+use Baumeister\TecDocClient\Generated\GetManufacturers2Response;
+use Baumeister\TecDocClient\Generated\GetVehicleIdsByCriteria;
+use Baumeister\TecDocClient\Generated\GetVehicleIdsByCriteriaResponse;
+use Baumeister\TecDocClient\Generated\GetVehicleIdsByMotor2;
+use Baumeister\TecDocClient\Generated\GetVehicleIdsByMotor2Response;
 use GuzzleHttp\Client as GuzzleClient;
 use JsonMapper;
 use ReflectionClass;
@@ -43,33 +57,110 @@ class Client
     public function getLanguages(GetLanguages $paramsObject): GetLanguagesResponse
     {
         $json = $this->call('getLanguages', $paramsObject);
-        return $this->jsonMapper->map($json, new GetLanguagesResponse());
+        return $this->mapJsonToObject($json, new GetLanguagesResponse());
     }
 
     public function getAmBrands(GetAmBrands $paramsObject): GetAmBrandsResponse
     {
         $json = $this->call('getAmBrands', $paramsObject);
-        return $this->jsonMapper->map($json, new GetAmBrandsResponse());
+        return $this->mapJsonToObject($json, new GetAmBrandsResponse());
     }
 
     public function getArticles(GetArticles $paramsObject): GetArticlesResponse
     {
         $json = $this->call('getArticles', $paramsObject);
-        return $this->jsonMapper->map($json, new GetArticlesResponse());
+        return $this->mapJsonToObject($json, new GetArticlesResponse());
     }
 
     public function getVehicleByIds3(GetVehicleByIds3 $paramsObject): GetVehicleByIds3Response
     {
         Client::addIntermediatePropNamedArray($paramsObject, 'carIds');
         $json = $this->call('getVehicleByIds3', $paramsObject);
-        return $this->jsonMapper->map($json, new GetVehicleByIds3Response());
+        return $this->mapJsonToObject($json, new GetVehicleByIds3Response());
     }
 
     public function getArticleLinkedAllLinkingTargetsByIds3(GetArticleLinkedAllLinkingTargetsByIds3 $paramsObject): GetArticleLinkedAllLinkingTargetsByIds3Response
     {
         Client::addIntermediatePropNamedArray($paramsObject, 'linkedArticlePairs');
         $json = $this->call('getArticleLinkedAllLinkingTargetsByIds3', $paramsObject);
-        return $this->jsonMapper->map($json, new GetArticleLinkedAllLinkingTargetsByIds3Response());
+        return $this->mapJsonToObject($json, new GetArticleLinkedAllLinkingTargetsByIds3Response());
+    }
+
+    /**
+     * Returns manufacturers
+     * @param  GetManufacturers2  $paramObject
+     *
+     * @return GetManufacturers2Response
+     * @throws \JsonMapper_Exception
+     */
+    public function getManufacturers2(GetManufacturers2 $paramObject): GetManufacturers2Response
+    {
+        $json = $this->call('getManufacturers2', $paramObject);
+        return $this->jsonMapper->map($json, new GetManufacturers2Response());
+    }
+
+    /**
+     * Returns models for given Manufacturer
+     * @param  GetModelSeries  $paramObject
+     *
+     * @return GetModelSeriesResponse
+     * @throws \JsonMapper_Exception
+     */
+    public function getModelSeries(GetModelSeries $paramObject): GetModelSeriesResponse
+    {
+        $json = $this->call('getModelSeries', $paramObject);
+        return $this->jsonMapper->map($json, new GetModelSeriesResponse());
+    }
+
+    /**
+     * Returns Engines by manufacturer and model series
+     * @param  GetVehicleIdsByCriteria  $paramObject
+     *
+     * @return GetVehicleIdsByCriteriaResponse
+     * @throws \JsonMapper_Exception
+     */
+    public function getVehicleIdsByCriteria(GetVehicleIdsByCriteria $paramObject): GetVehicleIdsByCriteriaResponse
+    {
+        $json = $this->call('getVehicleIdsByCriteria', $paramObject);
+        return $this->jsonMapper->map($json, new GetVehicleIdsByCriteriaResponse());
+    }
+
+    /**
+     * Returns categories or nodes for current selected vehicle
+     * @param  GetChildNodesPattern2  $paramsObject
+     *
+     * @return GetChildNodesPattern2Response
+     * @throws \JsonMapper_Exception
+     */
+    public function getChildNodesPattern2(GetChildNodesPattern2 $paramsObject): GetChildNodesPattern2Response
+    {
+        $json = $this->call('getChildNodesPattern2', $paramsObject);
+        return $this->jsonMapper->map($json, new GetChildNodesPattern2Response());
+    }
+
+    /**
+     * Returns articles based on selected vehicle and selected node
+     * @param  GetDirectArticlesByIds7  $paramsObject
+     *
+     * @return GetDirectArticlesByIds7Response
+     * @throws \JsonMapper_Exception
+     */
+    public function getDirectArticlesByIds7(GetDirectArticlesByIds7 $paramsObject): GetDirectArticlesByIds7Response
+    {
+        Client::addIntermediatePropNamedArray($paramsObject, 'articleId');
+        $json = $this->call('getDirectArticlesByIds7', $paramsObject);
+        // Handle empty API result with invalid property value
+        $json->data = array_map(function($item) {
+            if(isset($item->articleThumbnails) && $item->articleThumbnails === '') {
+                unset($item->articleThumbnails);
+            }
+
+            return $item;
+        }, $json->data);
+
+
+
+        return $this->jsonMapper->map($json, new GetDirectArticlesByIds7Response());
     }
 
     public function getArticleLinkedAllLinkingTarget4(GetArticleLinkedAllLinkingTarget4 $paramsObject): GetArticleLinkedAllLinkingTarget4Response
@@ -79,7 +170,19 @@ class Client
         if (sizeof($json->data) == 1 and is_string($json->data[0]->articleLinkages)) {
             $json->data = [];
         }
-        return $this->jsonMapper->map($json, new GetArticleLinkedAllLinkingTarget4Response());
+        return $this->mapJsonToObject($json, new GetArticleLinkedAllLinkingTarget4Response());
+    }
+
+    public function getMotorsByCarTypeManuIdTerm2(GetMotorsByCarTypeManuIdTerm2 $paramsObject): GetMotorsByCarTypeManuIdTerm2Response
+    {
+        $json = $this->call('getMotorsByCarTypeManuIdTerm2', $paramsObject);
+        return $this->mapJsonToObject($json, new GetMotorsByCarTypeManuIdTerm2Response());
+    }
+
+    public function getVehicleIdsByMotor2(GetVehicleIdsByMotor2 $paramsObject): GetVehicleIdsByMotor2Response
+    {
+        $json = $this->call('getVehicleIdsByMotor2', $paramsObject);
+        return $this->mapJsonToObject($json, new GetVehicleIdsByMotor2Response());
     }
 
     private function call(string $functionName, $paramsObject)
@@ -148,5 +251,40 @@ class Client
             return $result;
         }
         return $object;
+    }
+
+    private function mapJsonToObject($json, $object)
+    {
+        try {
+            return $this->jsonMapper->map($json, $object);
+        } catch (\JsonMapper_Exception $e) {
+            // Replace empty string with empty array and try again
+            if (preg_match('/JSON property "(.+)" must be an array, string given/', $e->getMessage(), $matches)) {
+                $propName = $matches[1];
+                $this->findNestedPropAndSetValue($json, $propName, '', []);
+                return $this->mapJsonToObject($json, $object);
+            }
+            throw $e;
+        }
+    }
+
+    private function findNestedPropAndSetValue($obj, string $propName, $propValue, $newValue)
+    {
+        if (!is_object($obj)) {
+            return;
+        }
+        foreach ($obj as $p => $v) {
+            if ($p === $propName and $v === $propValue) {
+                $obj->$p = $newValue;
+            }
+            if (is_object($v)) {
+                $this->findNestedPropAndSetValue($v, $propName, $propValue, $newValue);
+            }
+            if (is_array($v)) {
+                foreach ($v as $k => $v1) {
+                    $this->findNestedPropAndSetValue($v1, $propName, $propValue, $newValue);
+                }
+            }
+        }
     }
 }
