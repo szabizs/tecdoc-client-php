@@ -6,6 +6,8 @@ namespace Baumeister\TecDocClient;
 
 use Baumeister\TecDocClient\Generated\GetAmBrands;
 use Baumeister\TecDocClient\Generated\GetAmBrandsResponse;
+use Baumeister\TecDocClient\Generated\GetArticleLinkedAllLinkingTarget3;
+use Baumeister\TecDocClient\Generated\GetArticleLinkedAllLinkingTarget3Response;
 use Baumeister\TecDocClient\Generated\GetArticleLinkedAllLinkingTarget4;
 use Baumeister\TecDocClient\Generated\GetArticleLinkedAllLinkingTarget4Response;
 use Baumeister\TecDocClient\Generated\GetArticleLinkedAllLinkingTargetsByIds3;
@@ -163,6 +165,16 @@ class Client
         return $this->jsonMapper->map($json, new GetDirectArticlesByIds7Response());
     }
 
+    public function getArticleLinkedAllLinkingTarget3(GetArticleLinkedAllLinkingTarget3 $paramsObject): GetArticleLinkedAllLinkingTarget3Response
+    {
+        $json = $this->call('getArticleLinkedAllLinkingTarget3', $paramsObject);
+        // Handle empty API result with invalid property value
+        if (sizeof($json->data) == 1 and is_string($json->data[0]->articleLinkages)) {
+            $json->data = [];
+        }
+        return $this->mapJsonToObject($json, new GetArticleLinkedAllLinkingTarget3Response());
+    }
+
     public function getArticleLinkedAllLinkingTarget4(GetArticleLinkedAllLinkingTarget4 $paramsObject): GetArticleLinkedAllLinkingTarget4Response
     {
         $json = $this->call('getArticleLinkedAllLinkingTarget4', $paramsObject);
@@ -183,6 +195,12 @@ class Client
     {
         $json = $this->call('getVehicleIdsByMotor2', $paramsObject);
         return $this->mapJsonToObject($json, new GetVehicleIdsByMotor2Response());
+    }
+
+	public function getLinkageTargets(): GetLink
+	{
+		$json = $this->call('getMotorsByCarTypeManuIdTerm2', $paramsObject);
+		return $this->mapJsonToObject($json, new GetMotorsByCarTypeManuIdTerm2Response());
     }
 
     private function call(string $functionName, $paramsObject)
