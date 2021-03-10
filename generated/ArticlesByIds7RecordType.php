@@ -1,924 +1,298 @@
 <?php
 
-namespace Baumeister\TecDocClient\Generated;
 
-/**
- * Class representing ArticlesByIds7RecordType
- *
- *
- * XSD Type: articlesByIds7Record
- */
-class ArticlesByIds7RecordType extends ArticlesByIds7RecordSrcType
+namespace Baumeister\TecDocClient;
+
+
+use Baumeister\TecDocClient\Generated\GetAmBrands;
+use Baumeister\TecDocClient\Generated\GetAmBrandsResponse;
+use Baumeister\TecDocClient\Generated\GetArticleLinkedAllLinkingTarget3;
+use Baumeister\TecDocClient\Generated\GetArticleLinkedAllLinkingTarget3Response;
+use Baumeister\TecDocClient\Generated\GetArticleLinkedAllLinkingTarget4;
+use Baumeister\TecDocClient\Generated\GetArticleLinkedAllLinkingTarget4Response;
+use Baumeister\TecDocClient\Generated\GetArticleLinkedAllLinkingTargetsByIds3;
+use Baumeister\TecDocClient\Generated\GetArticleLinkedAllLinkingTargetsByIds3Response;
+use Baumeister\TecDocClient\Generated\GetArticles;
+use Baumeister\TecDocClient\Generated\GetArticlesResponse;
+use Baumeister\TecDocClient\Generated\GetChildNodesPattern2;
+use Baumeister\TecDocClient\Generated\GetChildNodesPattern2Response;
+use Baumeister\TecDocClient\Generated\GetDirectArticlesByIds7;
+use Baumeister\TecDocClient\Generated\GetDirectArticlesByIds7Response;
+use Baumeister\TecDocClient\Generated\GetLanguages;
+use Baumeister\TecDocClient\Generated\GetLanguagesResponse;
+use Baumeister\TecDocClient\Generated\GetModelSeries;
+use Baumeister\TecDocClient\Generated\GetModelSeriesResponse;
+use Baumeister\TecDocClient\Generated\GetMotorsByCarTypeManuIdTerm2;
+use Baumeister\TecDocClient\Generated\GetMotorsByCarTypeManuIdTerm2Response;
+use Baumeister\TecDocClient\Generated\GetVehicleByIds3;
+use Baumeister\TecDocClient\Generated\GetVehicleByIds3Response;
+use Baumeister\TecDocClient\Generated\GetManufacturers2;
+use Baumeister\TecDocClient\Generated\GetManufacturers2Response;
+use Baumeister\TecDocClient\Generated\GetVehicleIdsByCriteria;
+use Baumeister\TecDocClient\Generated\GetVehicleIdsByCriteriaResponse;
+use Baumeister\TecDocClient\Generated\GetVehicleIdsByMotor2;
+use Baumeister\TecDocClient\Generated\GetVehicleIdsByMotor2Response;
+use GuzzleHttp\Client as GuzzleClient;
+use JsonMapper;
+use ReflectionClass;
+use ReflectionObject;
+use RuntimeException;
+use stdClass;
+
+class Client
 {
+    const TECDOC_JSON_ENDPOINT = "https://webservice.tecalliance.services/pegasus-3-0/services/TecdocToCatDLB.jsonEndpoint?api_key=";
 
-    /**
-     * @var \Baumeister\TecDocClient\Generated\AssignedArticleAttributs2RecordType[] $articleAttributes
-     */
-    private $articleAttributes = null;
-
-    /**
-     * @var \Baumeister\TecDocClient\Generated\ArticleDocuments2RecordType[] $articleDocuments
-     */
-    private $articleDocuments = null;
-
-    /**
-     * @var \Baumeister\TecDocClient\Generated\AssignedArticleInfosRecordType[] $articleInfo
-     */
-    private $articleInfo = null;
-
-    /**
-     * @var \Baumeister\TecDocClient\Generated\ArticlePricesRecordType[] $articlePrices
-     */
-    private $articlePrices = null;
-
-    /**
-     * @var \Baumeister\TecDocClient\Generated\ThumbnailByArticleIdRecordType[] $articleThumbnails
-     */
-    private $articleThumbnails = null;
-
-    /**
-     * @var \Baumeister\TecDocClient\Generated\AssignedArticleById4RecordType $assignedArticle
-     */
-    private $assignedArticle = null;
-
-    /**
-     * @var \Baumeister\TecDocClient\Generated\ArticleDirectSearchById4RecordType $directArticle
-     */
-    private $directArticle = null;
-
-    /**
-     * @var \Baumeister\TecDocClient\Generated\EanNumbersRecordType[] $eanNumber
-     */
-    private $eanNumber = null;
-
-    /**
-     * @var \Baumeister\TecDocClient\Generated\ImmediateAttributs2RecordType[] $immediateAttributs
-     */
-    private $immediateAttributs = null;
-
-    /**
-     * @var \Baumeister\TecDocClient\Generated\ImmediateInfosRecordType[] $immediateInfo
-     */
-    private $immediateInfo = null;
-
-    /**
-     * @var \Baumeister\TecDocClient\Generated\MainArticlesRecordType[] $mainArticle
-     */
-    private $mainArticle = null;
-
-    /**
-     * @var \Baumeister\TecDocClient\Generated\ArticlePricesNormalAustauschRecordType[] $normalAustauschPrice
-     */
-    private $normalAustauschPrice = null;
-
-    /**
-     * @var \Baumeister\TecDocClient\Generated\ArticleOENumbersRecordType[] $oenNumbers
-     */
-    private $oenNumbers = null;
-
-    /**
-     * @var \Baumeister\TecDocClient\Generated\ReplacedByNumbersRecordType[] $replacedByNumber
-     */
-    private $replacedByNumber = null;
-
-    /**
-     * @var \Baumeister\TecDocClient\Generated\ReplacedNumbersRecordType[] $replacedNumber
-     */
-    private $replacedNumber = null;
-
-    /**
-     * @var \Baumeister\TecDocClient\Generated\UsageNumbers2RecordType[] $usageNumbers2
-     */
-    private $usageNumbers2 = null;
-
-    /**
-     * Adds as array
-     *
-     * @return self
-     * @param \Baumeister\TecDocClient\Generated\AssignedArticleAttributs2RecordType $array
-     */
-    public function addToArticleAttributes(\Baumeister\TecDocClient\Generated\AssignedArticleAttributs2RecordType $array)
-    {
-        $this->articleAttributes[] = $array;
-        return $this;
-    }
-
-    /**
-     * isset articleAttributes
-     *
-     * @param int|string $index
-     * @return bool
-     */
-    public function issetArticleAttributes($index)
-    {
-        return isset($this->articleAttributes[$index]);
-    }
-
-    /**
-     * unset articleAttributes
-     *
-     * @param int|string $index
-     * @return void
-     */
-    public function unsetArticleAttributes($index)
-    {
-        unset($this->articleAttributes[$index]);
-    }
-
-    /**
-     * Gets as articleAttributes
-     *
-     * @return \Baumeister\TecDocClient\Generated\AssignedArticleAttributs2RecordType[]
-     */
-    public function getArticleAttributes()
-    {
-        return $this->articleAttributes;
-    }
-
-    /**
-     * Sets a new articleAttributes
-     *
-     * @param \Baumeister\TecDocClient\Generated\AssignedArticleAttributs2RecordType[] $articleAttributes
-     * @return self
-     */
-    public function setArticleAttributes(array $articleAttributes)
-    {
-        $this->articleAttributes = $articleAttributes;
-        return $this;
-    }
-
-    /**
-     * Adds as array
-     *
-     * @return self
-     * @param \Baumeister\TecDocClient\Generated\ArticleDocuments2RecordType $array
-     */
-    public function addToArticleDocuments(\Baumeister\TecDocClient\Generated\ArticleDocuments2RecordType $array)
-    {
-        $this->articleDocuments[] = $array;
-        return $this;
-    }
-
-    /**
-     * isset articleDocuments
-     *
-     * @param int|string $index
-     * @return bool
-     */
-    public function issetArticleDocuments($index)
-    {
-        return isset($this->articleDocuments[$index]);
-    }
-
-    /**
-     * unset articleDocuments
-     *
-     * @param int|string $index
-     * @return void
-     */
-    public function unsetArticleDocuments($index)
-    {
-        unset($this->articleDocuments[$index]);
-    }
-
-    /**
-     * Gets as articleDocuments
-     *
-     * @return \Baumeister\TecDocClient\Generated\ArticleDocuments2RecordType[]
-     */
-    public function getArticleDocuments()
-    {
-        return $this->articleDocuments;
-    }
-
-    /**
-     * Sets a new articleDocuments
-     *
-     * @param \Baumeister\TecDocClient\Generated\ArticleDocuments2RecordType[] $articleDocuments
-     * @return self
-     */
-    public function setArticleDocuments(array $articleDocuments)
-    {
-        $this->articleDocuments = $articleDocuments;
-        return $this;
-    }
-
-    /**
-     * Adds as array
-     *
-     * @return self
-     * @param \Baumeister\TecDocClient\Generated\AssignedArticleInfosRecordType $array
-     */
-    public function addToArticleInfo(\Baumeister\TecDocClient\Generated\AssignedArticleInfosRecordType $array)
-    {
-        $this->articleInfo[] = $array;
-        return $this;
-    }
-
-    /**
-     * isset articleInfo
-     *
-     * @param int|string $index
-     * @return bool
-     */
-    public function issetArticleInfo($index)
-    {
-        return isset($this->articleInfo[$index]);
-    }
-
-    /**
-     * unset articleInfo
-     *
-     * @param int|string $index
-     * @return void
-     */
-    public function unsetArticleInfo($index)
-    {
-        unset($this->articleInfo[$index]);
-    }
-
-    /**
-     * Gets as articleInfo
-     *
-     * @return \Baumeister\TecDocClient\Generated\AssignedArticleInfosRecordType[]
-     */
-    public function getArticleInfo()
-    {
-        return $this->articleInfo;
-    }
-
-    /**
-     * Sets a new articleInfo
-     *
-     * @param \Baumeister\TecDocClient\Generated\AssignedArticleInfosRecordType[] $articleInfo
-     * @return self
-     */
-    public function setArticleInfo(array $articleInfo)
-    {
-        $this->articleInfo = $articleInfo;
-        return $this;
-    }
-
-    /**
-     * Adds as array
-     *
-     * @return self
-     * @param \Baumeister\TecDocClient\Generated\ArticlePricesRecordType $array
-     */
-    public function addToArticlePrices(\Baumeister\TecDocClient\Generated\ArticlePricesRecordType $array)
-    {
-        $this->articlePrices[] = $array;
-        return $this;
-    }
-
-    /**
-     * isset articlePrices
-     *
-     * @param int|string $index
-     * @return bool
-     */
-    public function issetArticlePrices($index)
-    {
-        return isset($this->articlePrices[$index]);
-    }
-
-    /**
-     * unset articlePrices
-     *
-     * @param int|string $index
-     * @return void
-     */
-    public function unsetArticlePrices($index)
-    {
-        unset($this->articlePrices[$index]);
-    }
-
-    /**
-     * Gets as articlePrices
-     *
-     * @return \Baumeister\TecDocClient\Generated\ArticlePricesRecordType[]
-     */
-    public function getArticlePrices()
-    {
-        return $this->articlePrices;
-    }
-
-    /**
-     * Sets a new articlePrices
-     *
-     * @param \Baumeister\TecDocClient\Generated\ArticlePricesRecordType[] $articlePrices
-     * @return self
-     */
-    public function setArticlePrices(array $articlePrices)
-    {
-        $this->articlePrices = $articlePrices;
-        return $this;
-    }
-
-    /**
-     * Adds as array
-     *
-     * @return self
-     * @param \Baumeister\TecDocClient\Generated\ThumbnailByArticleIdRecordType $array
-     */
-    public function addToArticleThumbnails(\Baumeister\TecDocClient\Generated\ThumbnailByArticleIdRecordType $array)
-    {
-        $this->articleThumbnails[] = $array;
-        return $this;
-    }
-
-    /**
-     * isset articleThumbnails
-     *
-     * @param int|string $index
-     * @return bool
-     */
-    public function issetArticleThumbnails($index)
-    {
-        return isset($this->articleThumbnails[$index]);
-    }
-
-    /**
-     * unset articleThumbnails
-     *
-     * @param int|string $index
-     * @return void
-     */
-    public function unsetArticleThumbnails($index)
-    {
-        unset($this->articleThumbnails[$index]);
-    }
-
-    /**
-     * Gets as articleThumbnails
-     *
-     * @return \Baumeister\TecDocClient\Generated\ThumbnailByArticleIdRecordType[]
-     */
-    public function getArticleThumbnails()
-    {
-        return $this->articleThumbnails;
-    }
-
-    /**
-     * Sets a new articleThumbnails
-     *
-     * @param \Baumeister\TecDocClient\Generated\ThumbnailByArticleIdRecordType[] $articleThumbnails
-     * @return self
-     */
-    public function setArticleThumbnails(array $articleThumbnails)
-    {
-        $this->articleThumbnails = $articleThumbnails;
-        return $this;
-    }
-
-    /**
-     * Gets as assignedArticle
-     *
-     * @return \Baumeister\TecDocClient\Generated\AssignedArticleById4RecordType
-     */
-    public function getAssignedArticle()
-    {
-        return $this->assignedArticle;
-    }
-
-    /**
-     * Sets a new assignedArticle
-     *
-     * @param \Baumeister\TecDocClient\Generated\AssignedArticleById4RecordType $assignedArticle
-     * @return self
-     */
-    public function setAssignedArticle(\Baumeister\TecDocClient\Generated\AssignedArticleById4RecordType $assignedArticle)
-    {
-        $this->assignedArticle = $assignedArticle;
-        return $this;
-    }
-
-    /**
-     * Gets as directArticle
-     *
-     * @return \Baumeister\TecDocClient\Generated\ArticleDirectSearchById4RecordType
-     */
-    public function getDirectArticle()
-    {
-        return $this->directArticle;
-    }
-
-    /**
-     * Sets a new directArticle
-     *
-     * @param \Baumeister\TecDocClient\Generated\ArticleDirectSearchById4RecordType $directArticle
-     * @return self
-     */
-    public function setDirectArticle(\Baumeister\TecDocClient\Generated\ArticlesByIds7RecordType $directArticle)
-    {
-        $this->directArticle = $directArticle;
-        return $this;
-    }
-
-    /**
-     * Adds as array
-     *
-     * @return self
-     * @param \Baumeister\TecDocClient\Generated\EanNumbersRecordType $array
-     */
-    public function addToEanNumber(\Baumeister\TecDocClient\Generated\EanNumbersRecordType $array)
-    {
-        $this->eanNumber[] = $array;
-        return $this;
-    }
-
-    /**
-     * isset eanNumber
-     *
-     * @param int|string $index
-     * @return bool
-     */
-    public function issetEanNumber($index)
-    {
-        return isset($this->eanNumber[$index]);
-    }
-
-    /**
-     * unset eanNumber
-     *
-     * @param int|string $index
-     * @return void
-     */
-    public function unsetEanNumber($index)
-    {
-        unset($this->eanNumber[$index]);
-    }
-
-    /**
-     * Gets as eanNumber
-     *
-     * @return \Baumeister\TecDocClient\Generated\EanNumbersRecordType[]
-     */
-    public function getEanNumber()
-    {
-        return $this->eanNumber;
-    }
-
-    /**
-     * Sets a new eanNumber
-     *
-     * @param \Baumeister\TecDocClient\Generated\EanNumbersRecordType[] $eanNumber
-     * @return self
-     */
-    public function setEanNumber(array $eanNumber)
-    {
-        $this->eanNumber = $eanNumber;
-        return $this;
-    }
-
-    /**
-     * Adds as array
-     *
-     * @return self
-     * @param \Baumeister\TecDocClient\Generated\ImmediateAttributs2RecordType $array
-     */
-    public function addToImmediateAttributs(\Baumeister\TecDocClient\Generated\ImmediateAttributs2RecordType $array)
-    {
-        $this->immediateAttributs[] = $array;
-        return $this;
-    }
-
-    /**
-     * isset immediateAttributs
-     *
-     * @param int|string $index
-     * @return bool
-     */
-    public function issetImmediateAttributs($index)
-    {
-        return isset($this->immediateAttributs[$index]);
-    }
-
-    /**
-     * unset immediateAttributs
-     *
-     * @param int|string $index
-     * @return void
-     */
-    public function unsetImmediateAttributs($index)
-    {
-        unset($this->immediateAttributs[$index]);
-    }
-
-    /**
-     * Gets as immediateAttributs
-     *
-     * @return \Baumeister\TecDocClient\Generated\ImmediateAttributs2RecordType[]
-     */
-    public function getImmediateAttributs()
-    {
-        return $this->immediateAttributs;
-    }
-
-    /**
-     * Sets a new immediateAttributs
-     *
-     * @param \Baumeister\TecDocClient\Generated\ImmediateAttributs2RecordType[] $immediateAttributs
-     * @return self
-     */
-    public function setImmediateAttributs(array $immediateAttributs)
-    {
-        $this->immediateAttributs = $immediateAttributs;
-        return $this;
-    }
-
-    /**
-     * Adds as array
-     *
-     * @return self
-     * @param \Baumeister\TecDocClient\Generated\ImmediateInfosRecordType $array
-     */
-    public function addToImmediateInfo(\Baumeister\TecDocClient\Generated\ImmediateInfosRecordType $array)
-    {
-        $this->immediateInfo[] = $array;
-        return $this;
-    }
-
-    /**
-     * isset immediateInfo
-     *
-     * @param int|string $index
-     * @return bool
-     */
-    public function issetImmediateInfo($index)
-    {
-        return isset($this->immediateInfo[$index]);
-    }
-
-    /**
-     * unset immediateInfo
-     *
-     * @param int|string $index
-     * @return void
-     */
-    public function unsetImmediateInfo($index)
-    {
-        unset($this->immediateInfo[$index]);
-    }
-
-    /**
-     * Gets as immediateInfo
-     *
-     * @return \Baumeister\TecDocClient\Generated\ImmediateInfosRecordType[]
-     */
-    public function getImmediateInfo()
-    {
-        return $this->immediateInfo;
-    }
-
-    /**
-     * Sets a new immediateInfo
-     *
-     * @param \Baumeister\TecDocClient\Generated\ImmediateInfosRecordType[] $immediateInfo
-     * @return self
-     */
-    public function setImmediateInfo(array $immediateInfo)
-    {
-        $this->immediateInfo = $immediateInfo;
-        return $this;
-    }
-
-    /**
-     * Adds as array
-     *
-     * @return self
-     * @param \Baumeister\TecDocClient\Generated\MainArticlesRecordType $array
-     */
-    public function addToMainArticle(\Baumeister\TecDocClient\Generated\MainArticlesRecordType $array)
-    {
-        $this->mainArticle[] = $array;
-        return $this;
-    }
-
-    /**
-     * isset mainArticle
-     *
-     * @param int|string $index
-     * @return bool
-     */
-    public function issetMainArticle($index)
-    {
-        return isset($this->mainArticle[$index]);
-    }
-
-    /**
-     * unset mainArticle
-     *
-     * @param int|string $index
-     * @return void
-     */
-    public function unsetMainArticle($index)
-    {
-        unset($this->mainArticle[$index]);
-    }
-
-    /**
-     * Gets as mainArticle
-     *
-     * @return \Baumeister\TecDocClient\Generated\MainArticlesRecordType[]
-     */
-    public function getMainArticle()
-    {
-        return $this->mainArticle;
-    }
-
-    /**
-     * Sets a new mainArticle
-     *
-     * @param \Baumeister\TecDocClient\Generated\MainArticlesRecordType[] $mainArticle
-     * @return self
-     */
-    public function setMainArticle(array $mainArticle)
-    {
-        $this->mainArticle = $mainArticle;
-        return $this;
-    }
-
-    /**
-     * Adds as array
-     *
-     * @return self
-     * @param \Baumeister\TecDocClient\Generated\ArticlePricesNormalAustauschRecordType $array
-     */
-    public function addToNormalAustauschPrice(\Baumeister\TecDocClient\Generated\ArticlePricesNormalAustauschRecordType $array)
-    {
-        $this->normalAustauschPrice[] = $array;
-        return $this;
-    }
-
-    /**
-     * isset normalAustauschPrice
-     *
-     * @param int|string $index
-     * @return bool
-     */
-    public function issetNormalAustauschPrice($index)
-    {
-        return isset($this->normalAustauschPrice[$index]);
-    }
-
-    /**
-     * unset normalAustauschPrice
-     *
-     * @param int|string $index
-     * @return void
-     */
-    public function unsetNormalAustauschPrice($index)
-    {
-        unset($this->normalAustauschPrice[$index]);
-    }
-
-    /**
-     * Gets as normalAustauschPrice
-     *
-     * @return \Baumeister\TecDocClient\Generated\ArticlePricesNormalAustauschRecordType[]
-     */
-    public function getNormalAustauschPrice()
-    {
-        return $this->normalAustauschPrice;
-    }
-
-    /**
-     * Sets a new normalAustauschPrice
-     *
-     * @param \Baumeister\TecDocClient\Generated\ArticlePricesNormalAustauschRecordType[] $normalAustauschPrice
-     * @return self
-     */
-    public function setNormalAustauschPrice(array $normalAustauschPrice)
-    {
-        $this->normalAustauschPrice = $normalAustauschPrice;
-        return $this;
-    }
-
-    /**
-     * Adds as array
-     *
-     * @return self
-     * @param \Baumeister\TecDocClient\Generated\ArticleOENumbersRecordType $array
-     */
-    public function addToOenNumbers(\Baumeister\TecDocClient\Generated\ArticleOENumbersRecordType $array)
-    {
-        $this->oenNumbers[] = $array;
-        return $this;
-    }
-
-    /**
-     * isset oenNumbers
-     *
-     * @param int|string $index
-     * @return bool
-     */
-    public function issetOenNumbers($index)
-    {
-        return isset($this->oenNumbers[$index]);
-    }
-
-    /**
-     * unset oenNumbers
-     *
-     * @param int|string $index
-     * @return void
-     */
-    public function unsetOenNumbers($index)
-    {
-        unset($this->oenNumbers[$index]);
-    }
-
-    /**
-     * Gets as oenNumbers
-     *
-     * @return \Baumeister\TecDocClient\Generated\ArticleOENumbersRecordType[]
-     */
-    public function getOenNumbers()
-    {
-        return $this->oenNumbers;
-    }
-
-    /**
-     * Sets a new oenNumbers
-     *
-     * @param \Baumeister\TecDocClient\Generated\ArticleOENumbersRecordType[] $oenNumbers
-     * @return self
-     */
-    public function setOenNumbers(array $oenNumbers)
-    {
-        $this->oenNumbers = $oenNumbers;
-        return $this;
-    }
+    private $client;
+    private $url;
+    private $providerId;
+    private $jsonMapper;
 
-    /**
-     * Adds as array
-     *
-     * @return self
-     * @param \Baumeister\TecDocClient\Generated\ReplacedByNumbersRecordType $array
-     */
-    public function addToReplacedByNumber(\Baumeister\TecDocClient\Generated\ReplacedByNumbersRecordType $array)
+    public function __construct(string $apiKey, int $providerId)
     {
-        $this->replacedByNumber[] = $array;
-        return $this;
+        $this->providerId = $providerId;
+        $this->client = new GuzzleClient();
+        $this->url = self::TECDOC_JSON_ENDPOINT . $apiKey;
+        $this->jsonMapper = new JsonMapper();
     }
 
-    /**
-     * isset replacedByNumber
-     *
-     * @param int|string $index
-     * @return bool
-     */
-    public function issetReplacedByNumber($index)
+    public function getLanguages(GetLanguages $paramsObject): GetLanguagesResponse
     {
-        return isset($this->replacedByNumber[$index]);
+        $json = $this->call('getLanguages', $paramsObject);
+        return $this->mapJsonToObject($json, new GetLanguagesResponse());
     }
 
-    /**
-     * unset replacedByNumber
-     *
-     * @param int|string $index
-     * @return void
-     */
-    public function unsetReplacedByNumber($index)
+    public function getAmBrands(GetAmBrands $paramsObject): GetAmBrandsResponse
     {
-        unset($this->replacedByNumber[$index]);
+        $json = $this->call('getAmBrands', $paramsObject);
+        return $this->mapJsonToObject($json, new GetAmBrandsResponse());
     }
 
-    /**
-     * Gets as replacedByNumber
-     *
-     * @return \Baumeister\TecDocClient\Generated\ReplacedByNumbersRecordType[]
-     */
-    public function getReplacedByNumber()
+    public function getArticles(GetArticles $paramsObject): GetArticlesResponse
     {
-        return $this->replacedByNumber;
+        $json = $this->call('getArticles', $paramsObject);
+        return $this->mapJsonToObject($json, new GetArticlesResponse());
     }
 
-    /**
-     * Sets a new replacedByNumber
-     *
-     * @param \Baumeister\TecDocClient\Generated\ReplacedByNumbersRecordType[] $replacedByNumber
-     * @return self
-     */
-    public function setReplacedByNumber(array $replacedByNumber)
+    public function getVehicleByIds3(GetVehicleByIds3 $paramsObject): GetVehicleByIds3Response
     {
-        $this->replacedByNumber = $replacedByNumber;
-        return $this;
+        Client::addIntermediatePropNamedArray($paramsObject, 'carIds');
+        $json = $this->call('getVehicleByIds3', $paramsObject);
+        return $this->mapJsonToObject($json, new GetVehicleByIds3Response());
     }
 
-    /**
-     * Adds as array
-     *
-     * @return self
-     * @param \Baumeister\TecDocClient\Generated\ReplacedNumbersRecordType $array
-     */
-    public function addToReplacedNumber(\Baumeister\TecDocClient\Generated\ReplacedNumbersRecordType $array)
+    public function getArticleLinkedAllLinkingTargetsByIds3(GetArticleLinkedAllLinkingTargetsByIds3 $paramsObject): GetArticleLinkedAllLinkingTargetsByIds3Response
     {
-        $this->replacedNumber[] = $array;
-        return $this;
+        Client::addIntermediatePropNamedArray($paramsObject, 'linkedArticlePairs');
+        $json = $this->call('getArticleLinkedAllLinkingTargetsByIds3', $paramsObject);
+        return $this->mapJsonToObject($json, new GetArticleLinkedAllLinkingTargetsByIds3Response());
     }
 
     /**
-     * isset replacedNumber
+     * Returns manufacturers
+     * @param  GetManufacturers2  $paramObject
      *
-     * @param int|string $index
-     * @return bool
+     * @return GetManufacturers2Response
+     * @throws \JsonMapper_Exception
      */
-    public function issetReplacedNumber($index)
+    public function getManufacturers2(GetManufacturers2 $paramObject): GetManufacturers2Response
     {
-        return isset($this->replacedNumber[$index]);
+        $json = $this->call('getManufacturers2', $paramObject);
+        return $this->jsonMapper->map($json, new GetManufacturers2Response());
     }
 
     /**
-     * unset replacedNumber
+     * Returns models for given Manufacturer
+     * @param  GetModelSeries  $paramObject
      *
-     * @param int|string $index
-     * @return void
+     * @return GetModelSeriesResponse
+     * @throws \JsonMapper_Exception
      */
-    public function unsetReplacedNumber($index)
+    public function getModelSeries(GetModelSeries $paramObject): GetModelSeriesResponse
     {
-        unset($this->replacedNumber[$index]);
+        $json = $this->call('getModelSeries', $paramObject);
+        return $this->jsonMapper->map($json, new GetModelSeriesResponse());
     }
 
     /**
-     * Gets as replacedNumber
+     * Returns Engines by manufacturer and model series
+     * @param  GetVehicleIdsByCriteria  $paramObject
      *
-     * @return \Baumeister\TecDocClient\Generated\ReplacedNumbersRecordType[]
+     * @return GetVehicleIdsByCriteriaResponse
+     * @throws \JsonMapper_Exception
      */
-    public function getReplacedNumber()
+    public function getVehicleIdsByCriteria(GetVehicleIdsByCriteria $paramObject): GetVehicleIdsByCriteriaResponse
     {
-        return $this->replacedNumber;
+        $json = $this->call('getVehicleIdsByCriteria', $paramObject);
+        return $this->jsonMapper->map($json, new GetVehicleIdsByCriteriaResponse());
     }
 
     /**
-     * Sets a new replacedNumber
+     * Returns categories or nodes for current selected vehicle
+     * @param  GetChildNodesPattern2  $paramsObject
      *
-     * @param \Baumeister\TecDocClient\Generated\ReplacedNumbersRecordType[] $replacedNumber
-     * @return self
+     * @return GetChildNodesPattern2Response
+     * @throws \JsonMapper_Exception
      */
-    public function setReplacedNumber(array $replacedNumber)
+    public function getChildNodesPattern2(GetChildNodesPattern2 $paramsObject): GetChildNodesPattern2Response
     {
-        $this->replacedNumber = $replacedNumber;
-        return $this;
+        $json = $this->call('getChildNodesPattern2', $paramsObject);
+        return $this->jsonMapper->map($json, new GetChildNodesPattern2Response());
     }
 
     /**
-     * Adds as array
+     * Returns articles based on selected vehicle and selected node
+     * @param  GetDirectArticlesByIds7  $paramsObject
      *
-     * @return self
-     * @param \Baumeister\TecDocClient\Generated\UsageNumbers2RecordType $array
+     * @return GetDirectArticlesByIds7Response
+     * @throws \JsonMapper_Exception
      */
-    public function addToUsageNumbers2(\Baumeister\TecDocClient\Generated\UsageNumbers2RecordType $array)
+    public function getDirectArticlesByIds7(GetDirectArticlesByIds7 $paramsObject)
     {
-        $this->usageNumbers2[] = $array;
-        return $this;
+        Client::addIntermediatePropNamedArray($paramsObject, 'articleId');
+        $json = $this->call('getDirectArticlesByIds7', $paramsObject);
+        return $json;
+//        return $this->jsonMapper->map($json, new GetDirectArticlesByIds7Response());
     }
 
-    /**
-     * isset usageNumbers2
-     *
-     * @param int|string $index
-     * @return bool
-     */
-    public function issetUsageNumbers2($index)
+    public function getArticleLinkedAllLinkingTarget3(GetArticleLinkedAllLinkingTarget3 $paramsObject): GetArticleLinkedAllLinkingTarget3Response
     {
-        return isset($this->usageNumbers2[$index]);
+        $json = $this->call('getArticleLinkedAllLinkingTarget3', $paramsObject);
+        // Handle empty API result with invalid property value
+        if (sizeof($json->data) == 1 and is_string($json->data[0]->articleLinkages)) {
+            $json->data = [];
+        }
+        return $this->mapJsonToObject($json, new GetArticleLinkedAllLinkingTarget3Response());
     }
 
-    /**
-     * unset usageNumbers2
-     *
-     * @param int|string $index
-     * @return void
-     */
-    public function unsetUsageNumbers2($index)
+    public function getArticleLinkedAllLinkingTarget4(GetArticleLinkedAllLinkingTarget4 $paramsObject): GetArticleLinkedAllLinkingTarget4Response
     {
-        unset($this->usageNumbers2[$index]);
-    }
-
-    /**
-     * Gets as usageNumbers2
-     *
-     * @return \Baumeister\TecDocClient\Generated\UsageNumbers2RecordType[]
-     */
-    public function getUsageNumbers2()
+        $json = $this->call('getArticleLinkedAllLinkingTarget4', $paramsObject);
+        // Handle empty API result with invalid property value
+        if (sizeof($json->data) == 1 and is_string($json->data[0]->articleLinkages)) {
+            $json->data = [];
+        }
+        return $this->mapJsonToObject($json, new GetArticleLinkedAllLinkingTarget4Response());
+    }
+
+    public function getMotorsByCarTypeManuIdTerm2(GetMotorsByCarTypeManuIdTerm2 $paramsObject): GetMotorsByCarTypeManuIdTerm2Response
     {
-        return $this->usageNumbers2;
+        $json = $this->call('getMotorsByCarTypeManuIdTerm2', $paramsObject);
+        return $this->mapJsonToObject($json, new GetMotorsByCarTypeManuIdTerm2Response());
     }
 
-    /**
-     * Sets a new usageNumbers2
-     *
-     * @param \Baumeister\TecDocClient\Generated\UsageNumbers2RecordType[] $usageNumbers2
-     * @return self
-     */
-    public function setUsageNumbers2(array $usageNumbers2)
-    {
-        $this->usageNumbers2 = $usageNumbers2;
-        return $this;
+    public function getVehicleIdsByMotor2(GetVehicleIdsByMotor2 $paramsObject): GetVehicleIdsByMotor2Response
+    {
+        $json = $this->call('getVehicleIdsByMotor2', $paramsObject);
+        return $this->mapJsonToObject($json, new GetVehicleIdsByMotor2Response());
+    }
+
+	public function getLinkageTargets(): GetLink
+	{
+		$json = $this->call('getMotorsByCarTypeManuIdTerm2', $paramsObject);
+		return $this->mapJsonToObject($json, new GetMotorsByCarTypeManuIdTerm2Response());
+    }
+
+    private function call(string $functionName, $paramsObject)
+    {
+        $paramsArray = self::recursivelyTransformObjectToArray($paramsObject);
+        $paramsArray['provider'] = $this->providerId;
+        $jsonBody = [$functionName => $paramsArray];
+        $response = $this->client->request('POST', $this->url, [
+            'verify' => false,
+            'json' => $jsonBody
+        ]);
+        if ($response->getStatusCode() == 200) {
+            $json = json_decode($response->getBody());
+            Client::recursivelyRemoveIntermediatePropsNamedArray($json);
+            return $json;
+        }
+        throw new RuntimeException("HTTP request failed with code {$response->getStatusCode()}");
+    }
+
+    private static function recursivelyRemoveIntermediatePropsNamedArray($obj, $parentObj = null, $propName = null)
+    {
+        foreach ($obj as $prop => $val) {
+            if ($prop === 'array' && $parentObj != null && $propName != null) {
+                $parentObj->$propName = $val;
+                unset($obj->array);
+            }
+            if (is_object($val) or is_array($val)) {
+                Client::recursivelyRemoveIntermediatePropsNamedArray($val, $obj, $prop);
+            }
+        }
+    }
+
+    private static function addIntermediatePropNamedArray(object $paramsObject, string $propName): void
+    {
+        $reflectionClass = new ReflectionClass($paramsObject);
+        $reflectionProperty = $reflectionClass->getParentClass()->getProperty($propName);
+        $reflectionProperty->setAccessible(true);
+        $propValue = new stdClass();
+        $propValue->array = $reflectionProperty->getValue($paramsObject);
+        $reflectionProperty->setValue($paramsObject, $propValue);
+    }
+
+    private static function recursivelyTransformObjectToArray($object)
+    {
+        if (is_array($object)) {
+            $result = [];
+            foreach ($object as $k => $v) {
+                $result[$k] = self::recursivelyTransformObjectToArray($v);
+            }
+            return $result;
+        } else if (is_object($object)) {
+            $result = [];
+            try {
+                $reflection = $object instanceof stdClass ? new ReflectionObject($object) : new ReflectionClass($object);
+                do {
+                    $properties = $reflection->getProperties();
+                    foreach ($properties as $property) {
+                        $property->setAccessible(true);
+                        $propName = $property->getName();
+                        $result[$propName] = self::recursivelyTransformObjectToArray($property->getValue($object));
+                    }
+                } while ($reflection = $reflection->getParentClass());
+            } catch (\ReflectionException $e) {
+                print_r($e);
+            }
+            return $result;
+        }
+        return $object;
+    }
+
+    private function mapJsonToObject($json, $object)
+    {
+        try {
+            return $this->jsonMapper->map($json, $object);
+        } catch (\JsonMapper_Exception $e) {
+            // Replace empty string with empty array and try again
+            if (preg_match('/JSON property "(.+)" must be an array, string given/', $e->getMessage(), $matches)) {
+                $propName = $matches[1];
+                $this->findNestedPropAndSetValue($json, $propName, '', []);
+                return $this->mapJsonToObject($json, $object);
+            }
+            throw $e;
+        }
+    }
+
+    private function findNestedPropAndSetValue($obj, string $propName, $propValue, $newValue)
+    {
+        if (!is_object($obj)) {
+            return;
+        }
+        foreach ($obj as $p => $v) {
+            if ($p === $propName and $v === $propValue) {
+                $obj->$p = $newValue;
+            }
+            if (is_object($v)) {
+                $this->findNestedPropAndSetValue($v, $propName, $propValue, $newValue);
+            }
+            if (is_array($v)) {
+                foreach ($v as $k => $v1) {
+                    $this->findNestedPropAndSetValue($v1, $propName, $propValue, $newValue);
+                }
+            }
+        }
     }
-
-
 }
-
