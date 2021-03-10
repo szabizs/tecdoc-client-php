@@ -5,7 +5,7 @@ namespace Baumeister\TecDocClient\Generated;
 /**
  * Class representing ArticlesByIds7RecordType
  *
- * 
+ *
  * XSD Type: articlesByIds7Record
  */
 class ArticlesByIds7RecordType extends ArticlesByIds7RecordSrcType
@@ -409,7 +409,7 @@ class ArticlesByIds7RecordType extends ArticlesByIds7RecordSrcType
      * @param \Baumeister\TecDocClient\Generated\ArticleDirectSearchById4RecordType $directArticle
      * @return self
      */
-    public function setDirectArticle(\Baumeister\TecDocClient\Generated\ArticleDirectSearchById4RecordType $directArticle)
+    public function setDirectArticle(\Baumeister\TecDocClient\Generated\ArticlesByIds7RecordType $directArticle)
     {
         $this->directArticle = $directArticle;
         return $this;
