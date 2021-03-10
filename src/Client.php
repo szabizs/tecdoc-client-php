@@ -147,7 +147,7 @@ class Client
      * @return GetDirectArticlesByIds7Response
      * @throws \JsonMapper_Exception
      */
-    public function getDirectArticlesByIds7(GetDirectArticlesByIds7 $paramsObject): GetDirectArticlesByIds7Response
+    public function getDirectArticlesByIds7(GetDirectArticlesByIds7 $paramsObject)
     {
         Client::addIntermediatePropNamedArray($paramsObject, 'articleId');
         $json = $this->call('getDirectArticlesByIds7', $paramsObject);
