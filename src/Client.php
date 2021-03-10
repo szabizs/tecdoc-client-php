@@ -152,7 +152,8 @@ class Client
         Client::addIntermediatePropNamedArray($paramsObject, 'articleId');
         $json = $this->call('getDirectArticlesByIds7', $paramsObject);
 
-        return $this->mapJsonToObject($json, new GetDirectArticlesByIds7Response());
+        return $json;
+//        return $this->mapJsonToObject($json, new GetDirectArticlesByIds7Response());
     }
 
     public function getArticleLinkedAllLinkingTarget3(GetArticleLinkedAllLinkingTarget3 $paramsObject): GetArticleLinkedAllLinkingTarget3Response
