@@ -151,18 +151,8 @@ class Client
     {
         Client::addIntermediatePropNamedArray($paramsObject, 'articleId');
         $json = $this->call('getDirectArticlesByIds7', $paramsObject);
-        // Handle empty API result with invalid property value
-        $json->data = array_map(function($item) {
-            if(isset($item->articleThumbnails) && $item->articleThumbnails === '') {
-                unset($item->articleThumbnails);
-            }
 
-            return $item;
-        }, $json->data);
-
-
-
-        return $this->jsonMapper->map($json, new GetDirectArticlesByIds7Response());
+        return $this->mapJsonToObject($json, new GetDirectArticlesByIds7Response());
     }
 
     public function getArticleLinkedAllLinkingTarget3(GetArticleLinkedAllLinkingTarget3 $paramsObject): GetArticleLinkedAllLinkingTarget3Response
