@@ -12,6 +12,8 @@ use Baumeister\TecDocClient\Generated\GetArticleLinkedAllLinkingTarget4;
 use Baumeister\TecDocClient\Generated\GetArticleLinkedAllLinkingTarget4Response;
 use Baumeister\TecDocClient\Generated\GetArticleLinkedAllLinkingTargetsByIds3;
 use Baumeister\TecDocClient\Generated\GetArticleLinkedAllLinkingTargetsByIds3Response;
+use Baumeister\TecDocClient\Generated\GetArticlePartList;
+use Baumeister\TecDocClient\Generated\GetArticlePartListResponse;
 use Baumeister\TecDocClient\Generated\GetArticles;
 use Baumeister\TecDocClient\Generated\GetArticlesResponse;
 use Baumeister\TecDocClient\Generated\GetChildNodesPattern2;
@@ -165,6 +167,13 @@ class Client
         }
         return $this->mapJsonToObject($json, new GetArticleLinkedAllLinkingTarget3Response());
     }
+
+
+	public function getArticlePartList(GetArticlePartList $paramsObject): GetArticlePartListResponse
+	{
+		$json = $this->call('getArticlePartList', $paramsObject);
+		return $this->mapJsonToObject($json, new GetArticlePartListResponse());
+	}
 
     public function getArticleLinkedAllLinkingTarget4(GetArticleLinkedAllLinkingTarget4 $paramsObject): GetArticleLinkedAllLinkingTarget4Response
     {
